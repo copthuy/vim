@@ -65,5 +65,5 @@ set enc=utf-8
 set guifont=Consolas:h16:cDEFAULT
 colorscheme gruvbox
 " autocmd VimEnter * NERDTree D:\Saigon\apps\minesweeper
-autocmd VimEnter * NERDTree D:\Projects\Thuy\minesweeper
+" autocmd VimEnter * NERDTree D:\Projects\Thuy\minesweeper
 " vim: set ft=vim :
