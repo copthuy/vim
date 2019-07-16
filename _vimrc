@@ -44,7 +44,7 @@ augroup END
 highlight CursorLine guibg=#303000 ctermbg=black
 
 " Column marker at 81 (avoid writing long code)
-set colorcolumn=81
+" set colorcolumn=81
 
 " Gui option for gvim. Hide menu & toolbar
 set guioptions-=m  "remove menu bar
@@ -72,7 +72,8 @@ nnoremap <Leader>t :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Start of vim-plug manager
 call plug#begin('~/vimfiles/plugged')
-	Plug 'haishanh/night-owl.vim'
+	"Plug 'haishanh/night-owl.vim'
+	Plug 'morhetz/gruvbox'
 	Plug 'scrooloose/nerdtree'
 	Plug 'tpope/vim-surround'
 	Plug 'ap/vim-css-color'
@@ -84,8 +85,6 @@ call plug#begin('~/vimfiles/plugged')
 	Plug 'nathanaelkane/vim-indent-guides'
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'junegunn/rainbow_parentheses.vim'
-	" require npm from nodejs
-    Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'markdown', 'vue', 'html', 'php'] }
 call plug#end()
 " End vim-plug manager
 
@@ -93,18 +92,7 @@ call plug#end()
 map <F3> :NERDTreeToggle<CR>
 
 " Set my favorite color scheme
-colorscheme night-owl
-
-" Prettier
-let g:prettier#config#tab_width = 4
-let g:prettier#config#use_tabs = 'true'
-let g:prettier#config#single_quote = 'true'	" change double quote to single quote
-let g:prettier#autoformat = 0
-" autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
-augroup pretty
-	autocmd!
-	autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
-augroup END
+colorscheme gruvbox 
 
 " Rainbow Parentheses
 augroup rainbow
