@@ -3,6 +3,7 @@ set nocompatible
 filetype plugin indent on
 syntax on
 syntax enable
+set fileformat=unix
 set showmatch ruler
 set nobackup noundofile noswapfile
 set autoindent smartindent cindent tabstop=4 shiftwidth=4
