@@ -69,7 +69,8 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Remove all trailing whitespace by pressing \t {trim}
-nnoremap <Leader>t :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <Leader>t :let _s=@/<Bar>:%s/\s\+$//e<Bar><CR>:%s/
+/\r/g<Bar>:let @/=_s<Bar><CR>
 
 " Start of vim-plug manager
 call plug#begin('~/vimfiles/plugged')
@@ -77,8 +78,6 @@ call plug#begin('~/vimfiles/plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'scrooloose/nerdtree'
 	Plug 'tpope/vim-surround'
-	Plug 'ap/vim-css-color'
-	Plug 'shmargum/vim-sass-colors'
 	Plug 'alvan/vim-closetag'
 	Plug 'vim-scripts/AutoComplPop'
 	Plug 'vim-scripts/zoom.vim'
@@ -114,7 +113,6 @@ nnoremap <Leader>jq :-1read ~\vimfiles\snippets\jquery.html<CR>
 nnoremap <Leader>ve :e $MYVIMRC<CR>
 " Reload vimr configuration file
 nnoremap <Leader>vr :source $MYVIMRC<CR>
-
 
 
 
