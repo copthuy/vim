@@ -57,7 +57,7 @@ highlight CursorLine guibg=#303000 ctermbg=black
 " -------------------------------------------------------------------------------------------------------
 " PLUGINS - vim-plug mamager
 " -------------------------------------------------------------------------------------------------------
-call plug#begin('E:/Projects/_settings/nvim/plugged')
+call plug#begin('~/AppData/Local/nvim/plugged')
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
 	Plug 'tpope/vim-surround'
