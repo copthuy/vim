@@ -232,10 +232,27 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 " Move current line
-nnoremap <C-k> :<C-u>silent! move-2<CR>==
-nnoremap <C-j> :<C-u>silent! move+<CR>==
-xnoremap <C-k> :<C-u>silent! '<,'>move-2<CR>gv=gv
-xnoremap <C-j> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+nnoremap <C-Up> :<C-u>silent! move-2<CR>==
+nnoremap <C-Down> :<C-u>silent! move+<CR>==
+xnoremap <C-Up> :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <C-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+
+" Better switching windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-Tab> <C-w>w
+
+" Use alt + hjkl to resize windows
+nnoremap <silent> <M-j> :resize -2<CR>
+nnoremap <silent> <M-k> :resize +2<CR>
+nnoremap <silent> <M-h> :vertical resize -2<CR>
+nnoremap <silent> <M-l> :vertical resize +2<CR>
+
+" Alternate way to save
+nnoremap <silent> <C-s> :w<CR>
+
 
 " -------------------------------------------------------------------------------------------------------
 " Remove all trailing whitespace by pressing \t {trim}
