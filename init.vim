@@ -8,7 +8,7 @@ set t_Co=256 								" Support 256 colors
 set hidden 									" Allow modified buffers to be hidden
 set nowrap 									" Nowrap long lines
 set ruler 									" Show the cursor position all the time
-set number 									" Show left number gutter
+set number relativenumber 					" Show left number gutter
 set mouse=a 								" Enable your mouse
 set splitbelow 								" Horizontal splits will automatically be below
 set splitright 								" Vertical splits will automatically be to the right
@@ -42,6 +42,13 @@ set fileformat=unix 						" Set fileformat to unix
 set encoding=utf-8 							" Set string encoding
 set iskeyword+=- 							" Treat dash separated words as a word text object
 
+" Auto toggle line number
+augroup numbertoggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 " Highight current cursor line
 " Some tweaks to make it faster since cursoline will slow down VIM
 set cursorline! lazyredraw synmaxcol=1024
@@ -63,7 +70,6 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'captbaritone/better-indent-support-for-php-with-html'
-	Plug 'jremmen/vim-ripgrep'
 
 	" Programming support
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -242,17 +248,18 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <C-Tab> <C-w>w
+" nnoremap <C-Tab> <C-w>w
 
 " Use alt + hjkl to resize windows
-nnoremap <silent> <M-j> :resize -2<CR>
-nnoremap <silent> <M-k> :resize +2<CR>
-nnoremap <silent> <M-h> :vertical resize -2<CR>
-nnoremap <silent> <M-l> :vertical resize +2<CR>
+nnoremap <silent> <M-Up> :resize -2<CR>
+nnoremap <silent> <M-Down> :resize +2<CR>
+nnoremap <silent> <M-Right> :vertical resize -2<CR>
+nnoremap <silent> <M-Left> :vertical resize +2<CR>
 
 " Alternate way to save
 nnoremap <silent> <C-s> :w<CR>
-
+inoremap <silent> <C-s> <Esc>:w<CR>
+vnoremap <silent> <C-s> <Esc>:w<CR>
 
 " -------------------------------------------------------------------------------------------------------
 " Remove all trailing whitespace by pressing \t {trim}
