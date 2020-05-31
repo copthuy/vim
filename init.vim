@@ -127,6 +127,7 @@ let g:NERDTreeLimitedSyntax = 1
 autocmd VimEnter * NERDTree
 map <M-f> :NERDTreeToggle<CR>
 map <M-d> :NERDTree %<CR><C-w>l
+nmap <Leader>r :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 
 " -------------------------------------------------------------------------------------------------------
 " COC SETTINGS - https://github.com/neoclide/coc.nvim
@@ -274,6 +275,10 @@ autocmd BufNewFile,BufRead *.html set filetype=php
 " -------------------------------------------------------------------------------------------------------
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
+
+" Change font size
+nmap <C-ScrollWheelUp> :execute "GuiFont! " . substitute(GuiFont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
+nmap <C-ScrollWheelDown> :execute "GuiFont! " . substitute(GuiFont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
 
 " Toggle Folding
 inoremap <F12> <C-O>za
