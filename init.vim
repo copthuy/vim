@@ -92,6 +92,8 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 	Plug 'captbaritone/better-indent-support-for-php-with-html'
 	Plug 'ap/vim-css-color'
 	Plug 'alvan/vim-closetag'
+	Plug 'scrooloose/nerdcommenter'
+	Plug 'mattn/emmet-vim'
 
 	" Interface
 	Plug 'vim-airline/vim-airline'
@@ -132,6 +134,9 @@ nmap <Leader>r :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 " -------------------------------------------------------------------------------------------------------
 " COC SETTINGS - https://github.com/neoclide/coc.nvim
 " -------------------------------------------------------------------------------------------------------
+" Coc extentions
+let g:coc_global_extensions=['coc-powershell', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-prettier', 'coc-emmet', 'coc-json', 'coc-phpls', 'coc-markdownlint', 'coc-highlight']
+
 " Don't pass messages to |ins-completion-menu|
 set shortmess+=c
 
@@ -198,12 +203,12 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
+xmap = <Plug>(coc-format-selected)
+nmap = <Plug>(coc-format-selected)
 
 " Format the whole document
-nmap <leader>g :Format<CR>
-xmap <leader>g :Format<CR>
+nmap <leader>f :Format<CR>
+xmap <leader>f :Format<CR>
 
 augroup mygroup
 	autocmd!
@@ -276,10 +281,6 @@ autocmd BufNewFile,BufRead *.html set filetype=php
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
-" Change font size
-nmap <C-ScrollWheelUp> :execute "GuiFont! " . substitute(GuiFont, ':h\(\d\+\)', '\=":h" . (submatch(1) + 1)', '')<CR>
-nmap <C-ScrollWheelDown> :execute "GuiFont! " . substitute(GuiFont, ':h\(\d\+\)', '\=":h" . (submatch(1) - 1)', '')<CR>
-
 " Toggle Folding
 inoremap <F12> <C-O>za
 nnoremap <F12> za
@@ -298,23 +299,22 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-" Map Tab and Shift Tab
-inoremap <C-a> <Esc>ggVG
+" Select all
 nnoremap <C-a> ggVG
+inoremap <C-a> <Esc>ggVG
 vnoremap <C-a> <Esc>ggVG
 
 " Move current line
-nnoremap <C-Up> :<C-u>silent! move-2<CR>==
-nnoremap <C-Down> :<C-u>silent! move+<CR>==
-xnoremap <C-Up> :<C-u>silent! '<,'>move-2<CR>gv=gv
-xnoremap <C-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+nnoremap <M-Up> :<C-u>silent! move-2<CR>==
+nnoremap <M-Down> :<C-u>silent! move+<CR>==
+xnoremap <M-Up> :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap <M-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 " Better switching windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-" nnoremap <C-Tab> <C-w>w
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Down> <C-w>j
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Right> <C-w>l
 
 " Use alt + k/j/l/h to re
 nnoremap <silent> <M-k> :resize -2<CR>
@@ -345,7 +345,10 @@ nnoremap <silent> <F3> :Buffers<CR>
 nnoremap <silent> <M-z> :set nowrap!<CR>
 
 " -------------------------------------------------------------------------------------------------------
-" Remove all trailing whitespace by pressing \t {trim}
-" Replace all non-breaking space character with normal space
+" Fix Document Invalid Chars
+" 1. Remove trailing spaces
+" 2. Fix windows newline break
+" 3. Fix no-break-space code
 " -------------------------------------------------------------------------------------------------------
-nnoremap <Leader>t :let _s=@/<Bar>:%s/\s\+$//e<Bar>:%s/\r/\r/g<Bar>:%s/\%u00a0/ /g<Bar>:let @/=_s<Bar><CR>
+nnoremap <silent> <Leader>t :%s/\s\+$//e<Bar>:%s/\r/\r/ge<Bar>:%s/\%u00a0/ /ge<CR>:echo "Document invalid chars fixed!"<CR>
+
